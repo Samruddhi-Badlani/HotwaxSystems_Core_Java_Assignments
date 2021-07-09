@@ -1,0 +1,4 @@
+https://www.google.com/
+https://www.oracle.com/in/index.html
+https://stackify.com/java-tutorials/
+https://www.geeksforgeeks.org/python2
