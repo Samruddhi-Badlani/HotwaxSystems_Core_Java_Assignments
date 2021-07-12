@@ -2,7 +2,9 @@ import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
 public class URL_Content_Word_Counter {
+	
 	public ArrayList<String> read_urls_from_file() {
+		
 		try {
 			ArrayList<String> list_of_file = new ArrayList<String>();
 			File file1 = new File("src/URLS");
@@ -11,6 +13,7 @@ public class URL_Content_Word_Counter {
 			while ((st = br.readLine()) != null) {
 			    list_of_file.add(st);
 			}
+			br.close();
 			return list_of_file;
 		}
 		catch (FileNotFoundException exception) {
@@ -28,6 +31,7 @@ public class URL_Content_Word_Counter {
 	}
 	
 	public ArrayList<String> read_words_from_file() {
+		
 		try {
 			ArrayList<String> list_of_words = new ArrayList<String>();
 			File file1 = new File("src/Words");
@@ -36,6 +40,7 @@ public class URL_Content_Word_Counter {
 			while ((st = br.readLine()) != null) {
 			    list_of_words.add(st);
 			}
+			br.close();
 			return list_of_words;
 		}
 		catch (FileNotFoundException exception) {
@@ -51,4 +56,44 @@ public class URL_Content_Word_Counter {
 	
 		
 	}
+	
+	// Get the content of the webpage through the URL
+	public ArrayList<String> content_of_url(String website_address){
+		
+		ArrayList<String> content = new ArrayList<String>();
+		try {
+			URL url = new URL(website_address);
+			BufferedReader in = new BufferedReader(
+			        new InputStreamReader(url.openStream()));
+			String inputLine;
+	        while ((inputLine = in.readLine()) != null) {
+	        	content.add(inputLine);
+	        }
+	        in.close();
+				        
+		
+		return content;
+		}
+		catch(MalformedURLException exception) {
+			exception.printStackTrace();
+			return null;
+		}
+		catch(IOException exception) {
+			exception.printStackTrace();
+			return null;
+		}
+	}
+	
+	//Get the count of a word in the content of the webpage
+	public int get_my_count(String word,ArrayList<String> content ) {
+		
+		int frequency = 0;
+		for(String line : content ) {
+			if(line.contains(word)) {
+				frequency++;
+			}
+		}
+		return frequency;
+	}
+	
 }

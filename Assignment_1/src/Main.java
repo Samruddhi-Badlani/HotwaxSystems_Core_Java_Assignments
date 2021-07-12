@@ -19,7 +19,7 @@ public class Main {
 			return;
 		}
 		
-		//Reading URLS from the file
+		//Reading Words from the file
 		ArrayList<String> my_word_list= myCounter.read_words_from_file();
 		if(my_word_list!=null) {
 			for(String wordString : my_word_list) {
@@ -30,6 +30,11 @@ public class Main {
 			System.out.println("Error in reading Words files");
 			return;
 		}
+		
+		ArrayList<String>my_web_content = myCounter.content_of_url("https://www.google.com");
+		int my_word_count  = myCounter.get_my_count("google", my_web_content);
+		
+		System.out.println(my_word_count);
 	}
 
 }
