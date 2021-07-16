@@ -41,6 +41,12 @@ public class Main {
 				myRectangle.printDetails();
 				break;
 				
+			case 3:
+				System.out.print("Enter the radius of the circle ");
+				double radius = scanner.nextDouble();
+				Circle myCircle = new Circle(radius);
+				myCircle.printDetails();
+				
 			case 6:
 				System.out.println("Program exited successfully");
 				break;
