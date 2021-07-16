@@ -34,7 +34,9 @@ public class Main {
 							System.out.print("Enter the side of the square: ");
 							double side = scanner.nextDouble();
 							Square mySquare = new Square(side);
-							mySquare.printDetails();
+							if(mySquare.checkValidity(side)) {
+								mySquare.printDetails();
+							}
 							break;
 							
 						// Rectangle	
@@ -44,7 +46,9 @@ public class Main {
 							System.out.print("Enter the breadth of the rectangle ");
 							double breadth = scanner.nextDouble();
 							Rectangle myRectangle = new Rectangle(length, breadth);
-							myRectangle.printDetails();
+							if(myRectangle.checkValidity(length, breadth)) {
+								myRectangle.printDetails();
+							}
 							break;
 						
 						// Circle	
@@ -52,7 +56,9 @@ public class Main {
 							System.out.print("Enter the radius of the circle ");
 							double radius = scanner.nextDouble();
 							Circle myCircle = new Circle(radius);
-							myCircle.printDetails();
+							if(myCircle.checkValidity(radius)) {
+								myCircle.printDetails();
+							}
 							break;
 						
 						// Triangle
@@ -64,7 +70,9 @@ public class Main {
 							System.out.print("Enter side3 = ");
 							double side3 = scanner.nextDouble();
 							Triangle myTriangle = new Triangle(side1, side2, side3);
-							myTriangle.printDetails();
+							if(myTriangle.checkValidity(side1, side2, side3)) {
+								myTriangle.printDetails();
+							}
 							break;
 							
 						// Cube
@@ -72,7 +80,9 @@ public class Main {
 							System.out.print("Enter the side of the Cube: ");
 							side = scanner.nextDouble();
 							Cube myCube = new Cube(side);
-							myCube.printDetails();
+							if(myCube.checkValidity(side)) {
+								myCube.printDetails();
+							}
 							break;
 							
 						// Cuboid 	
@@ -84,14 +94,19 @@ public class Main {
 							System.out.print("Enter the height of the cuboid ");
 							double height = scanner.nextDouble();
 							Cuboid myCuboid = new Cuboid(length, breadth, height);
-							myCuboid.printDetails();
+							if(myCuboid.checkValidity(length, breadth)) {
+								myCuboid.printDetails();
+							}
+							break;
 							
 						// Sphere
 						case 7:
 							System.out.print("Enter the radius of the sphere ");
 							radius = scanner.nextDouble();
 							Sphere mySphere = new Sphere(radius);
-							mySphere.printDetails();
+							if(mySphere.checkValidity(radius)) {
+								mySphere.printDetails();
+							}
 							break;
 							
 						// Cylinder
@@ -101,7 +116,9 @@ public class Main {
 							System.out.print("Enter the height of the cuboid ");
 						    height = scanner.nextDouble();
 							Cylinder myCylinder = new Cylinder(radius, height);
-							myCylinder.printDetails();
+							if(myCylinder.checkValidity(radius, height)) {
+								myCylinder.printDetails();
+							}
 							break;
 							
 						case 9:
