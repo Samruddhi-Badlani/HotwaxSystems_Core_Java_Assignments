@@ -7,14 +7,25 @@ public class Square implements Shapes_2D {
 	public Square(double side) {
 
 		// TODO Auto-generated constructor stub
-		this.side=side;
+		try {
+			if(checkValidity(side)) {
+				this.side=side;
+			}
+			else {
+				throw new Invalid_Input("side of square cannot be negative");
+			}
+		}
+		catch (Invalid_Input e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	// Checks the validity of the input number
-	public boolean checkValidity(double side1,double side2,double side3) {
+	public boolean checkValidity(double side) {
 			
 		boolean flag=false;
-		if(side1+side2>side3&&side1+side3>side2&&side2+side3>side1) {
+		if(side>=0) {
 			flag=true;
 		}
 		return flag;

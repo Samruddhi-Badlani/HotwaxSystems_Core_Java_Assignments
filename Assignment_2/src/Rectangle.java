@@ -7,10 +7,29 @@ public class Rectangle implements Shapes_2D {
 	public Rectangle(double length,double breadth) {
 
 		// TODO Auto-generated constructor stub
-		this.length=length;
-		this.breadth=breadth;
+		try {
+			if(checkValidity(length, breadth)) {
+				this.length=length;
+				this.breadth=breadth;
+			}
+			else {
+				throw new Invalid_Input("Negative inputs are not valid");
+			}
+		}
+		catch (Invalid_Input e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
+	
 	}
 	
+	public boolean checkValidity(double length,double breadth) {
+		
+		boolean flag = false;
+		if(length>=0&&breadth>=0)
+			flag = true;
+		return flag;
+	}
 	// To set the length of the rectangle
 	public void setLength(double length) {
 		this.length = length;

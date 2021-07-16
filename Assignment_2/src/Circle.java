@@ -6,9 +6,28 @@ public class Circle implements Shapes_2D{
 	public Circle(double radius) {
 		
 		// TODO Auto-generated constructor stub
-		this.radius=radius;
+		try {
+			if(checkValidity(radius)) {
+				this.radius=radius;
+			}
+			else {
+				throw new Invalid_Input("Negative radius is not valid input");
+			}
+		}
+		catch (Invalid_Input e) {
+			// TODO: handle exception
+			System.out.println(e.getMessage());
+		}
 	}
 	
+	public boolean checkValidity(double radius) {
+		
+		boolean flag=false;
+		if(radius>=0) {
+			flag=true;
+		}
+		return flag;
+	}
 	//To set the radius of the circle
 	public void setRadius(double radius) {
 		
