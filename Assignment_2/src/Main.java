@@ -45,7 +45,7 @@ public class Main {
 				System.out.println("Program exited successfully");
 				break;
 			default:
-				System.out.println("Invalid choice ");
+				System.out.println("Invalid choice please enter correct choice");
 				break;
 			}
 		}
