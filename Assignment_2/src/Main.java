@@ -50,6 +50,7 @@ public class Main {
 							double radius = scanner.nextDouble();
 							Circle myCircle = new Circle(radius);
 							myCircle.printDetails();
+							break;
 						
 						// Triangle
 						case 4:
@@ -62,6 +63,16 @@ public class Main {
 							Triangle myTriangle = new Triangle(side1, side2, side3);
 							myTriangle.printDetails();
 							break;
+							
+						// Cube
+						case 5:
+							System.out.print("Enter the side of the Cube: ");
+							side = scanner.nextDouble();
+							Cube myCube = new Cube(side);
+							myCube.printDetails();
+							break;
+							
+							
 						case 6:
 							System.out.println("Program exited successfully");
 							break;

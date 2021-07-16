@@ -12,6 +12,7 @@ public class Square implements Shapes_2D {
 				this.side=side;
 			}
 			else {
+				this.side = side;
 				throw new Invalid_Input("side of square cannot be negative");
 			}
 		}
