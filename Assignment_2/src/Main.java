@@ -11,14 +11,15 @@ public class Main {
 		Scanner scanner=new Scanner(System.in);
 		
 		//Menu driven program to find the details of the shapes
-			while(choice!=6) {
+			while(choice!=7) {
 					// Options of the shapes available
 					System.out.println("1. Square");
 					System.out.println("2. Rectangle");
 					System.out.println("3. Circle");
 					System.out.println("4. Triangle");
 					System.out.println("5. Cube");
-					System.out.println("6. Exit");
+					System.out.println("6. Cuboid");
+					System.out.println("7. Exit");
 					
 					try {
 						choice = scanner.nextInt();
@@ -72,8 +73,18 @@ public class Main {
 							myCube.printDetails();
 							break;
 							
-							
+						// Cuboid 	
 						case 6:
+							System.out.print("Enter the length of the cuboid ");
+							length = scanner.nextDouble();
+							System.out.print("Enter the breadth of the cuboid ");
+							breadth = scanner.nextDouble();
+							System.out.print("Enter the height of the cuboid ");
+							double height = scanner.nextDouble();
+							Cuboid myCuboid = new Cuboid(length, breadth, height);
+							myCuboid.printDetails();
+							
+						case 7:
 							System.out.println("Program exited successfully");
 							break;
 						default:
