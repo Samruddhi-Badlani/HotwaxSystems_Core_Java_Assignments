@@ -11,7 +11,7 @@ public class Main {
 		Scanner scanner=new Scanner(System.in);
 		
 		//Menu driven program to find the details of the shapes
-			while(choice!=7) {
+			while(choice!=9) {
 					// Options of the shapes available
 					System.out.println("1. Square");
 					System.out.println("2. Rectangle");
@@ -19,7 +19,9 @@ public class Main {
 					System.out.println("4. Triangle");
 					System.out.println("5. Cube");
 					System.out.println("6. Cuboid");
-					System.out.println("7. Exit");
+					System.out.println("7. Sphere");
+					System.out.println("8. Cylinder");
+					System.out.println("9. Exit");
 					
 					try {
 						choice = scanner.nextInt();
@@ -84,7 +86,25 @@ public class Main {
 							Cuboid myCuboid = new Cuboid(length, breadth, height);
 							myCuboid.printDetails();
 							
+						// Sphere
 						case 7:
+							System.out.print("Enter the radius of the sphere ");
+							radius = scanner.nextDouble();
+							Sphere mySphere = new Sphere(radius);
+							mySphere.printDetails();
+							break;
+							
+						// Cylinder
+						case 8:
+							System.out.print("Enter the radius of the cylinder ");
+							radius = scanner.nextDouble();
+							System.out.print("Enter the height of the cuboid ");
+						    height = scanner.nextDouble();
+							Cylinder myCylinder = new Cylinder(radius, height);
+							myCylinder.printDetails();
+							break;
+							
+						case 9:
 							System.out.println("Program exited successfully");
 							break;
 						default:

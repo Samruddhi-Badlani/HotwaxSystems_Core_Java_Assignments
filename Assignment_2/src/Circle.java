@@ -6,6 +6,7 @@ public class Circle implements Shapes_2D{
 	public Circle(double radius) {
 		
 		// TODO Auto-generated constructor stub
+		this.radius=radius;
 		try {
 			if(checkValidity(radius)) {
 				this.radius=radius;
