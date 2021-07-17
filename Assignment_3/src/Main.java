@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -12,6 +13,18 @@ public class Main {
 		
 		// TODO Auto-generated method stub
 		System.out.println("Hello world!");
+		ArrayList<Employee> list_of_employees =load_data_in_list();
+		System.out.print(list_of_employees.size());	
+			
+		
+		
+	}
+	
+	
+	// To load the data into the arraylist 
+	public static ArrayList<Employee> load_data_in_list(){
+		
+		ArrayList<Employee> employeeDetails = new ArrayList<Employee>();
 		try {
 			File file = new File("src/employees");
 			if(file.exists()) {
@@ -31,8 +44,7 @@ public class Main {
 					employee.setEmail(email);
 					employee.setAge(age);
 					employee.setDob(dob);
-					employee.printDetails();
-					System.out.print("*********\n");
+					employeeDetails.add(employee);
 				}
 				infileScanner.close();
 				
@@ -51,10 +63,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-			
-			
-		
-		
+		return employeeDetails;
 	}
 
 }
