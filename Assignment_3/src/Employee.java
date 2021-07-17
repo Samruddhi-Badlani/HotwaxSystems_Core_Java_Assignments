@@ -1,11 +1,12 @@
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
-public class Employee {
+public class Employee implements Serializable {
 
 	private String name ;
 	private String email ;
 	private int age ;
-	private String dob ;
+	private Date dob ;
 	
 	public Employee() {
 		// TODO Auto-generated constructor stub
@@ -13,7 +14,7 @@ public class Employee {
 		this.name="samruddhi";
 		this.email="samuddhi4227132@gmail.com";
 		this.age = 20;
-		this.dob = "29/09/2001";
+		this.dob = new Date();
 	}
 	
 	public void setName(String name) {
@@ -28,7 +29,7 @@ public class Employee {
 		this.age = age;
 	}
 	
-	public void setDob(String dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 	
@@ -43,7 +44,14 @@ public class Employee {
 	public int getAge() {
 		return age;
 	}
-	public String getDob() {
+	public Date getDob() {
 		return dob;
+	}
+	
+	public void printDetails() {
+		System.out.println("Name : "+getName());
+		System.out.println("Age : "+getAge());
+		System.out.println("Email : "+getEmail());
+		System.out.println("DOB : "+getDob());
 	}
 }
