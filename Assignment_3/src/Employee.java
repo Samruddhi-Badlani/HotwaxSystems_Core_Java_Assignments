@@ -1,4 +1,6 @@
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Employee implements Serializable {
@@ -48,7 +50,22 @@ public class Employee implements Serializable {
 		return dob;
 	}
 	
-	
+	@Override
+	public String toString() {
+		
+		String employeeString ="";
+		StringBuffer employeeStringBuffer = new StringBuffer(name);
+		employeeStringBuffer.append(",");
+		employeeStringBuffer.append(email);
+		employeeStringBuffer.append(",");
+		employeeStringBuffer.append(Integer.toString(age));
+		employeeStringBuffer.append(",");
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
+		employeeStringBuffer.append(dateFormat.format(dob));
+		employeeStringBuffer.append(";");
+		employeeString = new String(employeeStringBuffer);
+		return toString();
+	}
 	
 	public void printDetails() {
 		System.out.println("Name : "+getName());
