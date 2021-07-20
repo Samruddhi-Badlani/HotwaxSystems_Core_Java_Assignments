@@ -45,7 +45,8 @@ public class Main {
 			case 1:
 				
 				managerEmployees.add_employee();
-				System.out.println("Employee details added successfully");
+				
+				
 				break;
 			
 			case 2:

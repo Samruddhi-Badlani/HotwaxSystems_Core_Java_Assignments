@@ -95,65 +95,67 @@ public class Manage_Employees {
 		try {
 			
 		// Getting the details of the employee 
-		System.out.println("Enter the following details of the employee:");
-		System.out.print("Name:  ");
-		String name = scanner.next();
-		System.out.print("Email:  ");
-		String email = scanner.next();
-		System.out.print("Age:  ");
-		int age = scanner.nextInt();
-		System.out.print("Date in dd/MM/yyyy format :  ");
-		String date_in_string = scanner.next();		
-		Date dob = new SimpleDateFormat("dd/MM/yyyy").parse(date_in_string);
-		
-		// Creating a new employee object
-		Employee newEmployee = new Employee();
-		
-		//  Setting the employee details 
-		newEmployee.setName(name);
-		newEmployee.setEmail(email);
-		newEmployee.setAge(age);
-		newEmployee.setDob(dob);
-		
-		// Adding into the list 
-		this.list_of_employees.add(newEmployee);
-		
-		// Creating the employee details string to write into the file
-		StringBuffer employeeStringBuffer = new StringBuffer(name);
-		employeeStringBuffer.append(",");
-		employeeStringBuffer.append(email);
-		employeeStringBuffer.append(",");
-		employeeStringBuffer.append(Integer.toString(age));
-		employeeStringBuffer.append(",");
-		employeeStringBuffer.append(date_in_string);
-		employeeStringBuffer.append(";");
-		String employeeString = new String(employeeStringBuffer);
-		
-		FileWriter fileWriter = new FileWriter(this.file_name,true);
-		FileOutputStream fileWriter2 = new FileOutputStream("src/employees_objects",true);
-		ObjectOutputStream outputStream = new ObjectOutputStream(fileWriter2);
-		outputStream.writeObject(newEmployee);
-		fileWriter2.close();
-		outputStream.close();
-		
-		BufferedWriter writer = new BufferedWriter(fileWriter);
-		System.out.print("NEW EMPLOYEE "+newEmployee.toString());
-		writer.write(employeeString);
-		writer.close();
-		fileWriter.close();
-		
-		
-		}
-		catch (ParseException e) {
-			// TODO: handle exception
-			e.printStackTrace();
+			System.out.println("Enter the following details of the employee:");
+			System.out.print("Name:  ");
+			String name = scanner.next();
+			System.out.print("Email:  ");
+			String email = scanner.next();
+			System.out.print("Age:  ");
+			int age = scanner.nextInt();
+			System.out.print("Date in dd/MM/yyyy format :  ");
+			String date_in_string = scanner.next();		
+			Date dob = new SimpleDateFormat("dd/MM/yyyy").parse(date_in_string);
+			
+			// Creating a new employee object
+			Employee newEmployee = new Employee();
+			
+			//  Setting the employee details 
+			newEmployee.setName(name);
+			newEmployee.setEmail(email);
+			newEmployee.setAge(age);
+			newEmployee.setDob(dob);
+			
+			// Adding into the list 
+			this.list_of_employees.add(newEmployee);
+			this.map_of_employees.put(newEmployee.getId(), newEmployee);
+			
+			// Creating the employee details string to write into the file
+			StringBuffer employeeStringBuffer = new StringBuffer(name);
+			employeeStringBuffer.append(",");
+			employeeStringBuffer.append(email);
+			employeeStringBuffer.append(",");
+			employeeStringBuffer.append(Integer.toString(age));
+			employeeStringBuffer.append(",");
+			employeeStringBuffer.append(date_in_string);
+			employeeStringBuffer.append(";");
+			String employeeString = new String(employeeStringBuffer);
+			
+			FileWriter fileWriter = new FileWriter(this.file_name,true);
+			FileOutputStream fileWriter2 = new FileOutputStream("src/employees_objects",true);
+			ObjectOutputStream outputStream = new ObjectOutputStream(fileWriter2);
+			outputStream.writeObject(newEmployee);
+			fileWriter2.close();
+			outputStream.close();
+			
+			BufferedWriter writer = new BufferedWriter(fileWriter);
+			System.out.print("NEW EMPLOYEE "+newEmployee.toString());
+			writer.write(employeeString);
+			writer.close();
+			fileWriter.close();
+			System.out.println("Employee details added successfully");
+			
+			
 		}
 		catch (InputMismatchException e) {
-			e.printStackTrace();
+			// TODO: handle exception
+			System.out.println("Invalid input");
+		}
+		catch (ParseException e) {
+			System.out.println("Invalid input");
 		}
 		catch (IOException e) {
 			// TODO: handle exception
-			e.printStackTrace();
+			System.out.println("IO exception occured");
 		}
 	}
 	
@@ -205,73 +207,71 @@ public class Manage_Employees {
 			System.out.print("Following are the details ");
 			this.map_of_employees.get(id).printDetails();
 			try {
-			String filePath = this.file_name;
-		    String result = fileToString(filePath);
-		    
-		    //Replacing the word with desired one
-		    result = result.replaceAll(this.map_of_employees.get(id).toString(), "");
-		    
-		    
-		    //Rewriting the contents of the text file
-		    FileWriter fileWriter = new FileWriter(new File(filePath));
-		    
-		    
-			
-			BufferedWriter writer = new BufferedWriter(fileWriter);
-			writer.write(result);
-			writer.close();
-			fileWriter.close();
-			System.out.println("Successfully deleted ");
-			
-			// Rewriting the contents in objects file
-			FileInputStream fileInputStream = new FileInputStream("src/employees_objects");
-			ArrayList<Employee> employees = new ArrayList<Employee>();
-			while(true) {
-				try {
-					ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-					Object obj = objectInputStream.readObject();
-					if(obj==null) {
-						break;
+				String filePath = this.file_name;
+			    String result = fileToString(filePath);
+			    
+			    //Replacing the word with desired one
+			    result = result.replaceAll(this.map_of_employees.get(id).toString(), "");
+			    
+			    
+			    //Rewriting the contents of the text file
+			    FileWriter fileWriter = new FileWriter(new File(filePath));
+			    
+			    
+				
+				BufferedWriter writer = new BufferedWriter(fileWriter);
+				writer.write(result);
+				writer.close();
+				fileWriter.close();
+				System.out.println("Successfully deleted ");
+				
+				// Rewriting the contents in objects file
+				FileInputStream fileInputStream = new FileInputStream("src/employees_objects");
+				ArrayList<Employee> employees = new ArrayList<Employee>();
+				while(true) {
+					try {
+						ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+						Object obj = objectInputStream.readObject();
+						if(obj==null) {
+							break;
+							}
+						Employee xEmployee = (Employee)obj;
+						if(xEmployee.getId()!=id) {
+							employees.add(xEmployee);
 						}
-					Employee xEmployee = (Employee)obj;
-					if(xEmployee.getId()!=id) {
-						employees.add(xEmployee);
 					}
+					catch (ClassNotFoundException e) {
+						// TODO: handle exception
+						System.out.println(e.getMessage());
+					}
+					catch (EOFException e) {
+						// TODO: handle exception
+							break;
+							}
 				}
-				catch (ClassNotFoundException e) {
-					// TODO: handle exception
-					System.out.println(e.getMessage());
+				
+				File file = new File("src/employees_objects");
+				if(file.delete()) {
+					System.out.print("Deleted the employee successfully");
 				}
-				catch (EOFException e) {
-					// TODO: handle exception
-						break;
-						}
-			}
-			
-			File file = new File("src/employees_objects");
-			if(file.delete()) {
-				System.out.print("Deleted the employee successfully");
-			}
-			else {
-				System.out.print("Error occured");
-			}
-			FileOutputStream fileOutputStream2 = new FileOutputStream("src/employees_objects",true);
-			for(Employee myEmployee : employees ) {
-				ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream2);
-				objectOutputStream.writeObject(myEmployee);
-			}
-			
-			
-		
-			
-		    return this.map_of_employees.get(id);
+				else {
+					System.out.print("Error occured");
+				}
+				FileOutputStream fileOutputStream2 = new FileOutputStream("src/employees_objects",true);
+				for(Employee myEmployee : employees ) {
+					ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream2);
+					objectOutputStream.writeObject(myEmployee);
+				}
+				this.map_of_employees.remove(id);
+				return this.map_of_employees.get(id);
+
 			}
 			catch (IOException e) {
 				// TODO: handle exception
 				System.out.print("IO exception has occured  ");
 				return null;
 			}
-
+			
 		}
 		else {
 			return null;
