@@ -1,5 +1,6 @@
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,13 +13,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.sql.rowset.CachedRowSet;
 
 public class Manage_Employees {
 	
 	public  String file_name="src/employees";
 	public   ArrayList<Employee> list_of_employees;
+	public  HashMap<Integer, Employee> map_of_employees;
 	
 	
 	// To load the data into the collection
@@ -26,12 +31,16 @@ public class Manage_Employees {
 		// TODO Auto-generated constructor stub
 		this.file_name=file_name;
 		this.list_of_employees = new ArrayList<Employee>();
+		this.map_of_employees = new HashMap<Integer, Employee>();
 		try {
 			File file = new File(file_name);
 			if(file.exists()) {
 				System.out.println("File found successfully");
 				Scanner infileScanner = new Scanner(file);
 				infileScanner.useDelimiter("[;]");
+
+				
+				
 				
 				// Reading the data from the file and storing into the arraylist
 				while (infileScanner.hasNext()) {
@@ -47,13 +56,16 @@ public class Manage_Employees {
 					employee.setAge(age);
 					employee.setDob(dob);
 					this.list_of_employees.add(employee);
-					
+					this.map_of_employees.put(employee.getId(),employee);
 					FileOutputStream fileOutputStream2 = new FileOutputStream("src/employees_objects",true);
 					ObjectOutputStream objectOutputStream2 = new ObjectOutputStream(fileOutputStream2);
 					objectOutputStream2.writeObject(employee);
-					fileOutputStream2.close();
 					objectOutputStream2.close();
+					fileOutputStream2.close();
+				
 				}
+			
+				
 				infileScanner.close();
 				
 			}
@@ -125,7 +137,7 @@ public class Manage_Employees {
 		outputStream.close();
 		
 		BufferedWriter writer = new BufferedWriter(fileWriter);
-		System.out.print("NEW EMPLOYEE "+employeeString);
+		System.out.print("NEW EMPLOYEE "+newEmployee.toString());
 		writer.write(employeeString);
 		writer.close();
 		fileWriter.close();
@@ -142,6 +154,148 @@ public class Manage_Employees {
 		catch (IOException e) {
 			// TODO: handle exception
 			e.printStackTrace();
+		}
+	}
+	
+	
+	// To show all the details of all employees
+	public void showAllDetails() {
+		
+	try {
+			FileInputStream fileInputStream = new FileInputStream("src/employees_objects");
+			while(true) {
+				try {
+			ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+			Object obj = objectInputStream.readObject();
+			if(obj==null) {
+				break;
+			}
+			Employee xEmployee = (Employee)obj;
+				xEmployee.printDetails();
+			}
+			catch (EOFException e) {
+				// TODO: handle exception
+				break;
+			}
+			
+			
+			}
+	}
+
+	catch (FileNotFoundException e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	catch (ClassNotFoundException e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+	catch (IOException e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
+		
+	}
+	
+	// To delete the employee through the id 
+	public Employee deleteEmployee(int id) {
+		
+		if(this.map_of_employees.containsKey(id)) {
+			System.out.println("yes the employee is there ");
+			System.out.print("Following are the details ");
+			this.map_of_employees.get(id).printDetails();
+			try {
+			String filePath = this.file_name;
+		    String result = fileToString(filePath);
+		    
+		    //Replacing the word with desired one
+		    result = result.replaceAll(this.map_of_employees.get(id).toString(), "");
+		    
+		    
+		    //Rewriting the contents of the text file
+		    FileWriter fileWriter = new FileWriter(new File(filePath));
+		    
+		    
+			
+			BufferedWriter writer = new BufferedWriter(fileWriter);
+			writer.write(result);
+			writer.close();
+			fileWriter.close();
+			System.out.println("Successfully deleted ");
+			
+			// Rewriting the contents in objects file
+			FileInputStream fileInputStream = new FileInputStream("src/employees_objects");
+			ArrayList<Employee> employees = new ArrayList<Employee>();
+			while(true) {
+				try {
+					ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+					Object obj = objectInputStream.readObject();
+					if(obj==null) {
+						break;
+						}
+					Employee xEmployee = (Employee)obj;
+					if(xEmployee.getId()!=id) {
+						employees.add(xEmployee);
+					}
+				}
+				catch (ClassNotFoundException e) {
+					// TODO: handle exception
+					System.out.println(e.getMessage());
+				}
+				catch (EOFException e) {
+					// TODO: handle exception
+						break;
+						}
+			}
+			
+			File file = new File("src/employees_objects");
+			if(file.delete()) {
+				System.out.print("Deleted the employee successfully");
+			}
+			else {
+				System.out.print("Error occured");
+			}
+			FileOutputStream fileOutputStream2 = new FileOutputStream("src/employees_objects",true);
+			for(Employee myEmployee : employees ) {
+				ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream2);
+				objectOutputStream.writeObject(myEmployee);
+			}
+			
+			
+		
+			
+		    return this.map_of_employees.get(id);
+			}
+			catch (IOException e) {
+				// TODO: handle exception
+				System.out.print("IO exception has occured  ");
+				return null;
+			}
+
+		}
+		else {
+			return null;
+		}
+		
+	}
+	
+	public String fileToString(String filePath) {
+		
+		try {
+			String input = null;
+		    Scanner sc = new Scanner(new File(filePath));
+		    StringBuffer sb = new StringBuffer();
+		    while (sc.hasNextLine()) {
+		    	input = sc.nextLine();
+		        sb.append(input);
+		      }
+		      return sb.toString();
+		}
+		
+		catch (FileNotFoundException e) {
+			// TODO: handle exception
+			System.out.println("Could not find file ");
+			return "null";
 		}
 	}
 	

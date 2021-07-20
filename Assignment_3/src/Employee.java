@@ -5,14 +5,18 @@ import java.util.Date;
 
 public class Employee implements Serializable {
 
+	private static int id_number=0;
 	private String name ;
 	private String email ;
 	private int age ;
 	private Date dob ;
+	private int id;
+	
 	
 	public Employee() {
 		// TODO Auto-generated constructor stub
-		
+		id_number++;
+		this.id=id_number;
 		this.name="samruddhi";
 		this.email="samuddhi4227132@gmail.com";
 		this.age = 20;
@@ -50,6 +54,10 @@ public class Employee implements Serializable {
 		return dob;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
 	@Override
 	public String toString() {
 		
@@ -64,13 +72,16 @@ public class Employee implements Serializable {
 		employeeStringBuffer.append(dateFormat.format(dob));
 		employeeStringBuffer.append(";");
 		employeeString = new String(employeeStringBuffer);
-		return toString();
+		return employeeString;
 	}
 	
 	public void printDetails() {
+		System.out.println("Id : "+getId());
 		System.out.println("Name : "+getName());
 		System.out.println("Age : "+getAge());
 		System.out.println("Email : "+getEmail());
 		System.out.println("DOB : "+getDob());
 	}
+	
+	
 }
