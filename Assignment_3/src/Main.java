@@ -60,6 +60,10 @@ public class Main {
 				}
 				break;
 				
+			case 3:
+				managerEmployees.searchEmployee();
+				break;
+				
 			case 4:
 				
 				managerEmployees.showAllDetails();
@@ -85,53 +89,53 @@ public class Main {
 			System.out.println(e.getMessage());
 		}
 		
-		ArrayList<Employee> my_list_to_sortArrayList = managerEmployees.list_of_employees;
-		
-		Collections.sort(my_list_to_sortArrayList,new SortByAge());
-		
-		
-		System.out.println("List sorted by age ");
-		for(Employee employee : my_list_to_sortArrayList) {
-			System.out.println(employee.getName()+"  "+employee.getAge());
-		}
-		
-        my_list_to_sortArrayList = managerEmployees.list_of_employees;
-		
-		Collections.sort(my_list_to_sortArrayList,new SortByNames());
-		
-		
-		System.out.println("List sorted by name ");
-		for(Employee employee : my_list_to_sortArrayList) {
-			System.out.println(employee.getName()+"  "+employee.getId());
-		}
-		
-		my_list_to_sortArrayList = managerEmployees.list_of_employees;
-		
-		Collections.sort(my_list_to_sortArrayList,new SortByID());
-		
-		System.out.println("List sorted by id ");
-		for(Employee employee : my_list_to_sortArrayList) {
-			System.out.println(employee.getName()+"  "+employee.getId());
-		}
-		
-		my_list_to_sortArrayList = managerEmployees.list_of_employees;
-		
-		Collections.sort(my_list_to_sortArrayList,new SortByEmail());
-		
-		System.out.println("List sorted by email ");
-		for(Employee employee : my_list_to_sortArrayList) {
-			System.out.println(employee.getName()+"  "+employee.getEmail());
-		}
-		
-		my_list_to_sortArrayList = managerEmployees.list_of_employees;
-		
-		Collections.sort(my_list_to_sortArrayList,new SortByDOB());
-		
-		System.out.println("List sorted by DOB ");
-		for(Employee employee : my_list_to_sortArrayList) {
-			System.out.println(employee.getName()+"  "+employee.getDob());
-		}
-		
+//		ArrayList<Employee> my_list_to_sortArrayList = managerEmployees.list_of_employees;
+//		
+//		Collections.sort(my_list_to_sortArrayList,new SortByAge());
+//		
+//		
+//		System.out.println("List sorted by age ");
+//		for(Employee employee : my_list_to_sortArrayList) {
+//			System.out.println(employee.getName()+"  "+employee.getAge());
+//		}
+//		
+//        my_list_to_sortArrayList = managerEmployees.list_of_employees;
+//		
+//		Collections.sort(my_list_to_sortArrayList,new SortByNames());
+//		
+//		
+//		System.out.println("List sorted by name ");
+//		for(Employee employee : my_list_to_sortArrayList) {
+//			System.out.println(employee.getName()+"  "+employee.getId());
+//		}
+//		
+//		my_list_to_sortArrayList = managerEmployees.list_of_employees;
+//		
+//		Collections.sort(my_list_to_sortArrayList,new SortByID());
+//		
+//		System.out.println("List sorted by id ");
+//		for(Employee employee : my_list_to_sortArrayList) {
+//			System.out.println(employee.getName()+"  "+employee.getId());
+//		}
+//		
+//		my_list_to_sortArrayList = managerEmployees.list_of_employees;
+//		
+//		Collections.sort(my_list_to_sortArrayList,new SortByEmail());
+//		
+//		System.out.println("List sorted by email ");
+//		for(Employee employee : my_list_to_sortArrayList) {
+//			System.out.println(employee.getName()+"  "+employee.getEmail());
+//		}
+//		
+//		my_list_to_sortArrayList = managerEmployees.list_of_employees;
+//		
+//		Collections.sort(my_list_to_sortArrayList,new SortByDOB());
+//		
+//		System.out.println("List sorted by DOB ");
+//		for(Employee employee : my_list_to_sortArrayList) {
+//			System.out.println(employee.getName()+"  "+employee.getDob());
+//		}
+//		
 		
 			
 		

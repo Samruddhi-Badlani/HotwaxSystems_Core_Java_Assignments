@@ -12,6 +12,8 @@ import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.InputMismatchException;
@@ -300,6 +302,103 @@ public class Manage_Employees {
 			// TODO: handle exception
 			System.out.println("Could not find file ");
 			return "null";
+		}
+	}
+	
+	
+	// To search the employee details 
+	public void searchEmployee() {
+		try {
+			
+			
+			Scanner scanner=new Scanner(System.in);
+			Employee resultEmployee = null;
+			
+			// Getting the details of the employee to be deleted
+			System.out.print("Type the query(text) to search  ");
+			String queryString = scanner.next();
+			
+			ArrayList<Employee> my_searchArrayList = this.list_of_employees;
+			int choice = 0;
+			System.out.println("Enter sort by ");
+			System.out.println("1. Name");
+			System.out.println("2. Age");
+			System.out.println("3. DOB");
+			System.out.println("4. Email");
+			System.out.println("5. ID");
+			
+			choice = scanner.nextInt();
+			
+			// Sorting the list of employees on the basis of the input given by user 
+			switch (choice) {
+			case 1:
+				Collections.sort(my_searchArrayList,new SortByNames());
+				break;
+				
+			case 2:
+				Collections.sort(my_searchArrayList,new SortByAge());
+				break;
+				
+			case 3:
+				Collections.sort(my_searchArrayList,new SortByDOB());
+				break;
+				
+			case 4:
+				Collections.sort(my_searchArrayList,new SortByEmail());
+				break;
+				
+			case 5:
+				Collections.sort(my_searchArrayList,new SortByID());
+				break;
+	
+			default:
+				
+				System.out.println("Invalid choice");
+				
+				
+			}
+			
+			System.out.print("Enter order A : ascending D : descending ");
+			String ch = scanner.next();
+			if (ch.compareTo("A")!=0&& ch.compareTo("D")!=0) {
+				System.out.println("Invalid choice");
+				
+				
+			}
+			if(ch.compareTo("A")==0) {
+				
+			}
+			else {
+				Collections.reverse(my_searchArrayList);
+			}
+			
+			ArrayList<Employee> resultArrayList = new ArrayList<Employee>();
+			
+			
+			// Searching the given query in the employee objects and if found similarity then adding to the result array
+			
+			for(Employee e:my_searchArrayList) {
+				if(e.toString().contains(queryString)) {
+						resultArrayList.add(e);
+				}
+			}
+			if(resultArrayList.size()==0) {
+				System.out.println("No record found!");
+			}
+			else {
+				for(Employee e:resultArrayList) {
+					e.printDetails();
+				}
+			}
+			
+			
+			
+			
+	}
+	catch (InputMismatchException e) {
+		// TODO: handle exception
+		System.out.println("Invalid input ");
+	   
 		}
 	}
 	
