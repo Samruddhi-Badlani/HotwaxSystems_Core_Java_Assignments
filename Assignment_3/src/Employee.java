@@ -1,6 +1,7 @@
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 
 public class Employee implements Serializable {
@@ -83,5 +84,59 @@ public class Employee implements Serializable {
 		System.out.println("DOB : "+getDob());
 	}
 	
+	
+}
+// Sort the list of employees according to the names in the ascending order
+class SortByNames implements Comparator<Employee>{
+
+	@Override
+	public int compare(Employee o1, Employee o2) {
+		// TODO Auto-generated method stub
+		return o1.getName().compareTo(o2.getName());
+	}
+	
+}
+
+//Sort the list of employees according to the ID in the ascending order
+class SortByID implements Comparator<Employee>{
+
+	@Override
+	public int compare(Employee o1, Employee o2) {
+		// TODO Auto-generated method stub
+		return o1.getId()-o2.getId();
+	}
+	
+}
+
+//Sort the list of employees according to the Age in the ascending order
+class SortByAge implements Comparator<Employee>{
+
+	@Override
+	public int compare(Employee o1, Employee o2) {
+		// TODO Auto-generated method stub
+		return o1.getAge()-o2.getAge();
+	}
+	
+}
+
+//Sort the list of employees according to the email in the ascending order
+class SortByEmail implements Comparator<Employee>{
+
+	@Override
+	public int compare(Employee o1, Employee o2) {
+		// TODO Auto-generated method stub
+		return o1.getEmail().compareTo(o2.getEmail());
+	}
+	
+}
+
+//Sort the list of employees according to the DOB in the ascending order
+class SortByDOB implements Comparator<Employee>{
+
+	@Override
+	public int compare(Employee o1, Employee o2) {
+		// TODO Auto-generated method stub
+		return o1.getDob().compareTo(o2.getDob());
+	}
 	
 }

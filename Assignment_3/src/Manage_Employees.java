@@ -206,6 +206,7 @@ public class Manage_Employees {
 			System.out.println("yes the employee is there ");
 			System.out.print("Following are the details ");
 			this.map_of_employees.get(id).printDetails();
+			Employee returnEmployee = this.map_of_employees.get(id);
 			try {
 				String filePath = this.file_name;
 			    String result = fileToString(filePath);
@@ -263,7 +264,8 @@ public class Manage_Employees {
 					objectOutputStream.writeObject(myEmployee);
 				}
 				this.map_of_employees.remove(id);
-				return this.map_of_employees.get(id);
+				this.list_of_employees.remove(returnEmployee);
+				return returnEmployee;
 
 			}
 			catch (IOException e) {
@@ -278,6 +280,8 @@ public class Manage_Employees {
 		}
 		
 	}
+	
+	
 	
 	public String fileToString(String filePath) {
 		
