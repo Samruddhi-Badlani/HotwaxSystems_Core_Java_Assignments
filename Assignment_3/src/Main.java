@@ -29,9 +29,7 @@ public class Main {
 		
 		int choice = 0;
 		
-		for(Map.Entry<Integer, Employee> entry : managerEmployees.map_of_employees.entrySet()) {
-			System.out.println(entry.getKey());
-		}
+		
 		
 		try {
 		while(choice!=5) {
