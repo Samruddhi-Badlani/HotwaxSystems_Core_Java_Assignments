@@ -14,10 +14,10 @@ public class Cylinder extends Circle {
 			this.height = height;
 		}
 		else {
-			throw new Invalid_Input("dimensions of cylinder cannot be negative");
+			throw new InvalidInput("dimensions of cylinder cannot be negative");
 		}
 		}
-		catch (Invalid_Input e) {
+		catch (InvalidInput e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}

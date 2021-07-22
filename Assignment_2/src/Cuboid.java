@@ -12,10 +12,10 @@ public class Cuboid extends Rectangle {
 				this.height = height;
 			}
 			else {
-				throw new Invalid_Input("Cuboid dimensions cannot be negative");
+				throw new InvalidInput("Cuboid dimensions cannot be negative");
 			}
 		}
-		catch (Invalid_Input e) {
+		catch (InvalidInput e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}

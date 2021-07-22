@@ -1,5 +1,5 @@
 
-public class Circle implements Shapes_2D{
+public class Circle implements Shapes2D{
 	
 	private double radius;
 	
@@ -12,10 +12,10 @@ public class Circle implements Shapes_2D{
 				this.radius=radius;
 			}
 			else {
-				throw new Invalid_Input("Negative radius is not valid input");
+				throw new InvalidInput("Negative radius is not valid input");
 			}
 		}
-		catch (Invalid_Input e) {
+		catch (InvalidInput e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}

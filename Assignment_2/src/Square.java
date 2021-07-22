@@ -1,5 +1,5 @@
 
-public class Square implements Shapes_2D {
+public class Square implements Shapes2D {
 	
 	private double side;  // Side of the square
 	
@@ -13,10 +13,10 @@ public class Square implements Shapes_2D {
 			}
 			else {
 				this.side = side;
-				throw new Invalid_Input("side of square cannot be negative");
+				throw new InvalidInput("side of square cannot be negative");
 			}
 		}
-		catch (Invalid_Input e) {
+		catch (InvalidInput e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}

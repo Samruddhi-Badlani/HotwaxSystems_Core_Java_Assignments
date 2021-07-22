@@ -37,10 +37,10 @@ public class Cube extends Square {
 				System.out.println("Volume of the cube with side = "+getSide()+" = "+volume());
 			}
 			else {
-				throw new Invalid_Input("Cube side cannot be negative");
+				throw new InvalidInput("Cube side cannot be negative");
 			}
 		}
-		catch (Invalid_Input e) {
+		catch (InvalidInput e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}

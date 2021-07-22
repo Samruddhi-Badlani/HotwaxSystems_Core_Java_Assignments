@@ -29,10 +29,10 @@ public class Sphere extends Circle{
 				System.out.print("Volume of the sphere with radius : "+getRadius()+" = "+volume());
 			}
 			else {
-				throw new Invalid_Input("Radius cannot be negative");
+				throw new InvalidInput("Radius cannot be negative");
 			}
 		}
-		catch (Invalid_Input e) {
+		catch (InvalidInput e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}

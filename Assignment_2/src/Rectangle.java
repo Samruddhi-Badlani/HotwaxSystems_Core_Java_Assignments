@@ -1,5 +1,5 @@
 
-public class Rectangle implements Shapes_2D {
+public class Rectangle implements Shapes2D {
 	
 	private double length; // Length of the rectangle
 	private double breadth; // Breadth of the rectangle
@@ -14,10 +14,10 @@ public class Rectangle implements Shapes_2D {
 				
 			}
 			else {
-				throw new Invalid_Input("Negative inputs are not valid");
+				throw new InvalidInput("Negative inputs are not valid");
 			}
 		}
-		catch (Invalid_Input e) {
+		catch (InvalidInput e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}

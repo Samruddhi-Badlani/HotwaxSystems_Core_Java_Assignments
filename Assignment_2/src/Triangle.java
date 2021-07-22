@@ -1,5 +1,5 @@
 
-public class Triangle implements Shapes_2D{
+public class Triangle implements Shapes2D{
 	
 	private double side1;
 	private double side2;
@@ -10,10 +10,10 @@ public class Triangle implements Shapes_2D{
 		// TODO Auto-generated constructor stub
 		try {
 			if(side1<0||side2<0||side3<0) {
-				throw new Invalid_Input("Sides of the triangle must be a positive value");
+				throw new InvalidInput("Sides of the triangle must be a positive value");
 			}
 		}
-		catch(Invalid_Input e) {
+		catch(InvalidInput e) {
 			System.out.println(e.getMessage());
 		}
 		try{
@@ -23,10 +23,10 @@ public class Triangle implements Shapes_2D{
 				this.side3 = side3;
 			}
 			else {
-				throw new Invalid_Input("Enter the valid sides of the triangle");
+				throw new InvalidInput("Enter the valid sides of the triangle");
 			}
 		}
-		catch (Invalid_Input e) {
+		catch (InvalidInput e) {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}
