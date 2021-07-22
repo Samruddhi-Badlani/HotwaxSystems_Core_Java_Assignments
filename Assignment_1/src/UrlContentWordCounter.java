@@ -1,10 +1,7 @@
 import java.net.*;
 import java.util.Comparator;
-import java.util.TreeMap;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+
 import java.util.Collections;
-import java.awt.Choice;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,10 +12,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.activation.MailcapCommandMap;
-public class URL_Content_Word_Counter {
+public class UrlContentWordCounter {
+	
+	
 	public Map<String, Integer> my_output_for_each_word;
-	public URL_Content_Word_Counter(){
+	public UrlContentWordCounter(){
 		my_output_for_each_word=new HashMap<String, Integer>();
 	}
 	
