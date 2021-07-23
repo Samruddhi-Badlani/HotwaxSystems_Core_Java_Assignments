@@ -1,29 +1,14 @@
-import java.io.EOFException;
+
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.InputMismatchException;
-import java.util.Map;
 import java.util.Scanner;
-
-import org.omg.CORBA.portable.ValueBase;
-
+import java.util.InputMismatchException;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
 		
 		// TODO Auto-generated method stub
 		System.out.println("Hello world!");
-		Manage_Employees managerEmployees = new Manage_Employees("src/employees");
+		ManageEmployees managerEmployees = new ManageEmployees("src/employees");
 		
 		Scanner scanner = new Scanner(System.in);
 		
@@ -86,7 +71,7 @@ public class Main {
 			// TODO: handle exception
 			System.out.println(e.getMessage());
 		}
-		
+//		
 //		ArrayList<Employee> my_list_to_sortArrayList = managerEmployees.list_of_employees;
 //		
 //		Collections.sort(my_list_to_sortArrayList,new SortByAge());
@@ -133,7 +118,7 @@ public class Main {
 //		for(Employee employee : my_list_to_sortArrayList) {
 //			System.out.println(employee.getName()+"  "+employee.getDob());
 //		}
-//		
+		
 		
 			
 		

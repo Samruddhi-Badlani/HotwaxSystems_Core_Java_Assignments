@@ -1,4 +1,4 @@
-import java.io.BufferedOutputStream;
+
 import java.io.BufferedWriter;
 import java.io.EOFException;
 import java.io.File;
@@ -21,7 +21,7 @@ import java.util.Scanner;
 
 import javax.sql.rowset.CachedRowSet;
 
-public class Manage_Employees {
+public class ManageEmployees {
 	
 	public  String file_name="src/employees";
 	public   ArrayList<Employee> list_of_employees;
@@ -29,7 +29,7 @@ public class Manage_Employees {
 	
 	
 	// To load the data into the collection
-	public Manage_Employees(String file_name) {
+	public ManageEmployees(String file_name) {
 		// TODO Auto-generated constructor stub
 		this.file_name=file_name;
 		this.list_of_employees = new ArrayList<Employee>();
