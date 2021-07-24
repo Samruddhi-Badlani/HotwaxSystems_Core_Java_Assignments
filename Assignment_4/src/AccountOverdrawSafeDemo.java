@@ -1,11 +1,11 @@
 
 import java.util.Date;
 
-public class AccountOverdrawDemo implements Runnable{
+public class AccountOverdrawSafeDemo implements Runnable{
 	
 	private Account account;
 	
-	public AccountOverdrawDemo(Account account) {
+	public AccountOverdrawSafeDemo(Account account) {
 		// TODO Auto-generated constructor stub
 		this.account = account;
 	}
@@ -24,7 +24,7 @@ public class AccountOverdrawDemo implements Runnable{
 		}
 	}
 	
-	private   void   makeWithdraw(int withdrawAmount) {
+	private  synchronized void    makeWithdraw(int withdrawAmount) {
 		
 		if(account.getBalance() >= withdrawAmount) {
 			System.out.println(Thread.currentThread().getName()+" is going to withdraw "+withdrawAmount+"Rs current time ="+ new Date()  );
@@ -42,45 +42,9 @@ public class AccountOverdrawDemo implements Runnable{
 		}
 	}
 	
-	public static void main(String[] args) {
-		
-		// TODO Auto-generated method stub
-		Account myAccount = new Account("jointAccount");
-		AccountOverdrawDemo demoAccountOverdraw = new AccountOverdrawDemo(myAccount);
-		
-		
-//		System.out.print("Multithreading without Synchronization ");
-//		Thread t1 = new Thread(demoAccountOverdraw);
-//		t1.setName("Riya");
-//		
-//		Thread t2 = new Thread(demoAccountOverdraw);
-//		t2.setName("John");
-//		
-//		t1.start();
-//		
-//		t2.start();
-		
-		AccountOverdrawSafeDemo demoAccountSafeOverdraw = new AccountOverdrawSafeDemo(myAccount);
-		System.out.println("Multithreading with Synchronization ");
-		Thread t1 = new Thread(demoAccountSafeOverdraw);
-		t1.setName("Riya");
-		
-		Thread t2 = new Thread(demoAccountSafeOverdraw);
-		t2.setName("John");
-		
-		t1.start();
-		
-		t2.start();
-		
-		
-		
-		
-		
-		
-		
-		
-	}
+	
 
 	
 
 }
+
