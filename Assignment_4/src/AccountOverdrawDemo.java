@@ -14,6 +14,7 @@ public class AccountOverdrawDemo implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		
+		// Loop to show that a person withdraws the money from the account continuously
 		for(int i = 0 ; i < 4 ; i++) {
 			
 			makeWithdraw(200);
@@ -24,8 +25,12 @@ public class AccountOverdrawDemo implements Runnable{
 		}
 	}
 	
+	
+	// To make the withdraw after checking the validity conditions
 	private   void   makeWithdraw(int withdrawAmount) {
 		
+		// We can withdraw only if balance is higher or equal to the amount we want to withdraw
+		// Use of date is done to show concurrent access to the same account by various persons 
 		if(account.getBalance() >= withdrawAmount) {
 			System.out.println(Thread.currentThread().getName()+" is going to withdraw "+withdrawAmount+"Rs current time ="+ new Date()  );
 			try {
