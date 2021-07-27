@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Employee implements Serializable {
 
-	private static int id_number=0;
+	private static int idNumber=0;
 	private String name ;
 	private String email ;
 	private int age ;
@@ -16,8 +16,8 @@ public class Employee implements Serializable {
 	
 	public Employee() {
 		// TODO Auto-generated constructor stub
-		id_number++;
-		this.id=id_number;
+		idNumber++;
+		this.id=idNumber;
 		this.name="samruddhi";
 		this.email="samuddhi4227132@gmail.com";
 		this.age = 20;

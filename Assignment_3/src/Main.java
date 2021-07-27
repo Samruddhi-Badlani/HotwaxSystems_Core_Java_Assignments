@@ -16,8 +16,9 @@ public class Main {
 		
 		
 		
-		try {
+		
 		while(choice!=5) {
+			try {
 			System.out.println("Chose from the following opertions  ");
 			System.out.println("1. Add employee details");
 			System.out.println("2. Delete employee details");
@@ -29,7 +30,7 @@ public class Main {
 			switch (choice) {
 			case 1:
 				
-				managerEmployees.add_employee();
+				managerEmployees.addEmployee();
 				
 				
 				break;
@@ -59,65 +60,22 @@ public class Main {
 				else {
 					System.out.print("Error occured");
 				}
+				break;
 
 			default:
+				System.out.println("Enter the choice between 1 to 5 only");
 				break;
+			}
+			}
+			catch (InputMismatchException e) {
+				// TODO: handle exception
+				scanner.next();
+				System.out.println(e.getMessage());
 			}
 		}
 		
 		
-		}
-		catch (InputMismatchException e) {
-			// TODO: handle exception
-			System.out.println(e.getMessage());
-		}
-//		
-//		ArrayList<Employee> my_list_to_sortArrayList = managerEmployees.list_of_employees;
-//		
-//		Collections.sort(my_list_to_sortArrayList,new SortByAge());
-//		
-//		
-//		System.out.println("List sorted by age ");
-//		for(Employee employee : my_list_to_sortArrayList) {
-//			System.out.println(employee.getName()+"  "+employee.getAge());
-//		}
-//		
-//        my_list_to_sortArrayList = managerEmployees.list_of_employees;
-//		
-//		Collections.sort(my_list_to_sortArrayList,new SortByNames());
-//		
-//		
-//		System.out.println("List sorted by name ");
-//		for(Employee employee : my_list_to_sortArrayList) {
-//			System.out.println(employee.getName()+"  "+employee.getId());
-//		}
-//		
-//		my_list_to_sortArrayList = managerEmployees.list_of_employees;
-//		
-//		Collections.sort(my_list_to_sortArrayList,new SortByID());
-//		
-//		System.out.println("List sorted by id ");
-//		for(Employee employee : my_list_to_sortArrayList) {
-//			System.out.println(employee.getName()+"  "+employee.getId());
-//		}
-//		
-//		my_list_to_sortArrayList = managerEmployees.list_of_employees;
-//		
-//		Collections.sort(my_list_to_sortArrayList,new SortByEmail());
-//		
-//		System.out.println("List sorted by email ");
-//		for(Employee employee : my_list_to_sortArrayList) {
-//			System.out.println(employee.getName()+"  "+employee.getEmail());
-//		}
-//		
-//		my_list_to_sortArrayList = managerEmployees.list_of_employees;
-//		
-//		Collections.sort(my_list_to_sortArrayList,new SortByDOB());
-//		
-//		System.out.println("List sorted by DOB ");
-//		for(Employee employee : my_list_to_sortArrayList) {
-//			System.out.println(employee.getName()+"  "+employee.getDob());
-//		}
+
 		
 		
 			

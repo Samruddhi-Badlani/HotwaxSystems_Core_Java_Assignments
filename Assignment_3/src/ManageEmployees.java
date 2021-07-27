@@ -23,17 +23,17 @@ import javax.sql.rowset.CachedRowSet;
 
 public class ManageEmployees {
 	
-	public  String file_name="src/employees";
-	public   ArrayList<Employee> list_of_employees;
-	public  HashMap<Integer, Employee> map_of_employees;
+	public  String fileName="src/employees";
+	public   ArrayList<Employee> listOfEmployees;
+	public  HashMap<Integer, Employee> mapOfEmployees;
 	
 	
 	// To load the data into the collection
 	public ManageEmployees(String file_name) {
 		// TODO Auto-generated constructor stub
-		this.file_name=file_name;
-		this.list_of_employees = new ArrayList<Employee>();
-		this.map_of_employees = new HashMap<Integer, Employee>();
+		this.fileName=file_name;
+		this.listOfEmployees = new ArrayList<Employee>();
+		this.mapOfEmployees = new HashMap<Integer, Employee>();
 		try {
 			File file = new File(file_name);
 			if(file.exists()) {
@@ -57,8 +57,8 @@ public class ManageEmployees {
 					employee.setEmail(email);
 					employee.setAge(age);
 					employee.setDob(dob);
-					this.list_of_employees.add(employee);
-					this.map_of_employees.put(employee.getId(),employee);
+					this.listOfEmployees.add(employee);
+					this.mapOfEmployees.put(employee.getId(),employee);
 					FileOutputStream fileOutputStream2 = new FileOutputStream("src/employees_objects",true);
 					ObjectOutputStream objectOutputStream2 = new ObjectOutputStream(fileOutputStream2);
 					objectOutputStream2.writeObject(employee);
@@ -91,7 +91,7 @@ public class ManageEmployees {
 	}
 	
 	// To add the record of employee
-	public  void add_employee() {
+	public  void addEmployee() {
 		
 		Scanner scanner = new Scanner(System.in);
 		try {
@@ -118,8 +118,8 @@ public class ManageEmployees {
 			newEmployee.setDob(dob);
 			
 			// Adding into the list 
-			this.list_of_employees.add(newEmployee);
-			this.map_of_employees.put(newEmployee.getId(), newEmployee);
+			this.listOfEmployees.add(newEmployee);
+			this.mapOfEmployees.put(newEmployee.getId(), newEmployee);
 			
 			// Creating the employee details string to write into the file
 			StringBuffer employeeStringBuffer = new StringBuffer(name);
@@ -132,7 +132,7 @@ public class ManageEmployees {
 			employeeStringBuffer.append(";");
 			String employeeString = new String(employeeStringBuffer);
 			
-			FileWriter fileWriter = new FileWriter(this.file_name,true);
+			FileWriter fileWriter = new FileWriter(this.fileName,true);
 			FileOutputStream fileWriter2 = new FileOutputStream("src/employees_objects",true);
 			ObjectOutputStream outputStream = new ObjectOutputStream(fileWriter2);
 			outputStream.writeObject(newEmployee);
@@ -204,17 +204,17 @@ public class ManageEmployees {
 	// To delete the employee through the id 
 	public Employee deleteEmployee(int id) {
 		
-		if(this.map_of_employees.containsKey(id)) {
+		if(this.mapOfEmployees.containsKey(id)) {
 			System.out.println("yes the employee is there ");
 			System.out.print("Following are the details ");
-			this.map_of_employees.get(id).printDetails();
-			Employee returnEmployee = this.map_of_employees.get(id);
+			this.mapOfEmployees.get(id).printDetails();
+			Employee returnEmployee = this.mapOfEmployees.get(id);
 			try {
-				String filePath = this.file_name;
+				String filePath = this.fileName;
 			    String result = fileToString(filePath);
 			    
 			    //Replacing the word with desired one
-			    result = result.replaceAll(this.map_of_employees.get(id).toString(), "");
+			    result = result.replaceAll(this.mapOfEmployees.get(id).toString(), "");
 			    
 			    
 			    //Rewriting the contents of the text file
@@ -265,8 +265,8 @@ public class ManageEmployees {
 					ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream2);
 					objectOutputStream.writeObject(myEmployee);
 				}
-				this.map_of_employees.remove(id);
-				this.list_of_employees.remove(returnEmployee);
+				this.mapOfEmployees.remove(id);
+				this.listOfEmployees.remove(returnEmployee);
 				return returnEmployee;
 
 			}
@@ -318,7 +318,7 @@ public class ManageEmployees {
 			System.out.print("Type the query(text) to search  ");
 			String queryString = scanner.next();
 			
-			ArrayList<Employee> my_searchArrayList = this.list_of_employees;
+			ArrayList<Employee> mySearchArrayList = this.listOfEmployees;
 			int choice = 0;
 			System.out.println("Enter sort by ");
 			System.out.println("1. Name");
@@ -332,23 +332,23 @@ public class ManageEmployees {
 			// Sorting the list of employees on the basis of the input given by user 
 			switch (choice) {
 			case 1:
-				Collections.sort(my_searchArrayList,new SortByNames());
+				Collections.sort(mySearchArrayList,new SortByNames());
 				break;
 				
 			case 2:
-				Collections.sort(my_searchArrayList,new SortByAge());
+				Collections.sort(mySearchArrayList,new SortByAge());
 				break;
 				
 			case 3:
-				Collections.sort(my_searchArrayList,new SortByDOB());
+				Collections.sort(mySearchArrayList,new SortByDOB());
 				break;
 				
 			case 4:
-				Collections.sort(my_searchArrayList,new SortByEmail());
+				Collections.sort(mySearchArrayList,new SortByEmail());
 				break;
 				
 			case 5:
-				Collections.sort(my_searchArrayList,new SortByID());
+				Collections.sort(mySearchArrayList,new SortByID());
 				break;
 	
 			default:
@@ -369,7 +369,7 @@ public class ManageEmployees {
 				
 			}
 			else {
-				Collections.reverse(my_searchArrayList);
+				Collections.reverse(mySearchArrayList);
 			}
 			
 			ArrayList<Employee> resultArrayList = new ArrayList<Employee>();
@@ -377,7 +377,7 @@ public class ManageEmployees {
 			
 			// Searching the given query in the employee objects and if found similarity then adding to the result array
 			
-			for(Employee e:my_searchArrayList) {
+			for(Employee e:mySearchArrayList) {
 				if(e.toString().contains(queryString)) {
 						resultArrayList.add(e);
 				}
