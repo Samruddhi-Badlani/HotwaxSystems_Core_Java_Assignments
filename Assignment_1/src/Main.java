@@ -8,14 +8,14 @@ public class Main {
 		UrlContentWordCounter myCounter = new UrlContentWordCounter();
 		Map<String, Map<String, Integer>> resultMap = myCounter.processAllUrls();
 		System.out.println("OUTPUT #1\n ========\n");
-		for(Map.Entry<String, Map<String, Integer>> my_Map : resultMap.entrySet()) {
-			System.out.println(my_Map.getKey());
-			int top_words_count =3;
-			int count_words=0;
-			Map<String, Integer> word_map = my_Map.getValue();
-			for(Map.Entry<String, Integer> wordEntry : word_map.entrySet()) {
-				count_words++;
-				if(count_words > top_words_count) {
+		for(Map.Entry<String, Map<String, Integer>> myMap : resultMap.entrySet()) {
+			System.out.println(myMap.getKey());
+			int topWordsCount =3;
+			int countWords=0;
+			Map<String, Integer> wordMap = myMap.getValue();
+			for(Map.Entry<String, Integer> wordEntry : wordMap.entrySet()) {
+				countWords++;
+				if(countWords > topWordsCount) {
 					break;
 				}
 				System.out.println(wordEntry.getKey()+" "+wordEntry.getValue());
