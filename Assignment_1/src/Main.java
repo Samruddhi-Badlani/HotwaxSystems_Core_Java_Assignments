@@ -6,7 +6,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		//Creating an object of the class 
 		UrlContentWordCounter myCounter = new UrlContentWordCounter();
-		Map<String, Map<String, Integer>> resultMap = myCounter.process_all_urls();
+		Map<String, Map<String, Integer>> resultMap = myCounter.processAllUrls();
 		System.out.println("OUTPUT #1\n ========\n");
 		for(Map.Entry<String, Map<String, Integer>> my_Map : resultMap.entrySet()) {
 			System.out.println(my_Map.getKey());
@@ -23,8 +23,8 @@ public class Main {
 		}
 		System.out.println("==============================");
 		System.out.println("OUTPUT #2");
-		myCounter.my_output_for_each_word=myCounter.sortByValue(myCounter.my_output_for_each_word);
-		for(Map.Entry<String, Integer> entry:myCounter.my_output_for_each_word.entrySet()) {
+		myCounter.myOutputForEachWord=myCounter.sortByValue(myCounter.myOutputForEachWord);
+		for(Map.Entry<String, Integer> entry:myCounter.myOutputForEachWord.entrySet()) {
 			System.out.println(entry.getKey()+" "+entry.getValue());
 		}
 	}

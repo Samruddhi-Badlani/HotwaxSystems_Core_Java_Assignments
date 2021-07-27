@@ -15,23 +15,23 @@ import java.util.Map.Entry;
 public class UrlContentWordCounter {
 	
 	
-	public Map<String, Integer> my_output_for_each_word;
+	public Map<String, Integer> myOutputForEachWord;
 	public UrlContentWordCounter(){
-		my_output_for_each_word=new HashMap<String, Integer>();
+		myOutputForEachWord = new HashMap<String, Integer>();
 	}
 	
-	public ArrayList<String> read_urls_from_file() {
+	public ArrayList<String> readUrlsFromFile() {
 		
 		try {
-			ArrayList<String> list_of_file = new ArrayList<String>();
+			ArrayList<String> listOfFiles = new ArrayList<String>();
 			File file1 = new File("src/URLS");
 			BufferedReader br = new BufferedReader(new FileReader(file1));
 			String st;
 			while ((st = br.readLine()) != null) {
-			    list_of_file.add(st);
+			    listOfFiles.add(st);
 			}
 			br.close();
-			return list_of_file;
+			return listOfFiles;
 		}
 		catch (FileNotFoundException exception) {
 			// TODO: handle exception
@@ -47,19 +47,19 @@ public class UrlContentWordCounter {
 		
 	}
 	
-	public ArrayList<String> read_words_from_file() {
+	public ArrayList<String> readWordsFromFile() {
 		
 		try {
-			ArrayList<String> list_of_words = new ArrayList<String>();
+			ArrayList<String> listOfWords = new ArrayList<String>();
 			File file1 = new File("src/Words");
 			BufferedReader br = new BufferedReader(new FileReader(file1));
 			String st;
 			while ((st = br.readLine()) != null) {
-			    list_of_words.add(st);
+			    listOfWords.add(st);
 			    
 			}
 			br.close();
-			return list_of_words;
+			return listOfWords;
 		}
 		catch (FileNotFoundException exception) {
 			// TODO: handle exception
@@ -76,7 +76,7 @@ public class UrlContentWordCounter {
 	}
 	
 	// Get the content of the webpage through the URL
-	public ArrayList<String> content_of_url(String website_address){
+	public ArrayList<String> contentOfUrl(String website_address){
 		
 		ArrayList<String> content = new ArrayList<String>();
 		try {
@@ -103,7 +103,7 @@ public class UrlContentWordCounter {
 	}
 	
 	//Get the count of a word in the content of the webpage
-	public int get_my_count(String word,ArrayList<String> content ) {
+	public int getMyCount(String word,ArrayList<String> content ) {
 		
 		int frequency = 0;
 		for(String line : content ) {
@@ -116,17 +116,17 @@ public class UrlContentWordCounter {
 	}
 	
 	// Get the word count for each word in a file for a particular URL
-	public Map<String,Integer> process_one_url(String url){
+	public Map<String,Integer> processOneUrl(String url){
 		
-		Map<String, Integer> word_frequency_countMap = new HashMap<String, Integer>();
-		ArrayList<String> content = content_of_url(url);
-		ArrayList<String> my_words = read_words_from_file();
-		for(String word : my_words) {
-			int count = get_my_count(word,content);
-			word_frequency_countMap.put(word, count);
+		Map<String, Integer> wordFrequencyCountMap = new HashMap<String, Integer>();
+		ArrayList<String> content = contentOfUrl(url);
+		ArrayList<String> myWords = readWordsFromFile();
+		for(String word : myWords) {
+			int count = getMyCount(word,content);
+			wordFrequencyCountMap.put(word,count);
 			
 		}
-	return word_frequency_countMap;		
+	return wordFrequencyCountMap;		
 	}
 	
 	public Map<String, Integer> sortByValue(Map<String, Integer> map) {
@@ -135,53 +135,49 @@ public class UrlContentWordCounter {
 		boolean order=false;
 		List<Entry<String, Integer>> list = new LinkedList<Entry<String, Integer>>(map.entrySet());  
 		//sorting the list elements  
-		Collections.sort(list, new Comparator<Entry<String, Integer>>()   
-		{  
-		public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2)   
-		{  
-		if (order)   
-		{  
-		//compare two object and return an integer  
-		return o1.getValue().compareTo(o2.getValue());}   
-		else   
-		{  
-		return o2.getValue().compareTo(o1.getValue());  
-		}  
-		}  
+		Collections.sort(list, new Comparator<Entry<String, Integer>>()   {  
+			public int compare(Entry<String, Integer> o1, Entry<String, Integer> o2)   {  
+				if (order)   {  
+					//compare two object and return an integer  
+					return o1.getValue().compareTo(o2.getValue());
+				}   
+				else   {  
+					return o2.getValue().compareTo(o1.getValue());  
+				}  
+			}  
 		});  
 		//prints the sorted HashMap  
 		Map<String, Integer> sortedMap = new LinkedHashMap<String, Integer>();  
-		for (Entry<String, Integer> entry : list)   
-		{  
-		sortedMap.put(entry.getKey(), entry.getValue());  
+		for (Entry<String, Integer> entry : list)   {  
+			sortedMap.put(entry.getKey(), entry.getValue());  
 		}  
 		return sortedMap;  
 	}
 	
 	//Process all the URLS 
-	public Map<String,Map<String, Integer>> process_all_urls(){
+	public Map<String,Map<String, Integer>> processAllUrls(){
 		
-		Map<String, Map<String, Integer>> url_map = new HashMap<String,Map<String, Integer>>();
+		Map<String, Map<String, Integer>> urlMap = new HashMap<String,Map<String, Integer>>();
 		
-		ArrayList<String> my_urls = read_urls_from_file();
-		for(String url : my_urls) {
-			ArrayList<String> content = content_of_url(url);
-			ArrayList<String> my_words = read_words_from_file();
-			Map<String, Integer> word_frequency_countMap = new HashMap<String, Integer>();
-			for(String word : my_words) {
-				int count = get_my_count(word,content);
-				word_frequency_countMap.put(word, count);
-				if(my_output_for_each_word.containsKey(word)) {
-					my_output_for_each_word.put(word, my_output_for_each_word.get(word)+count);
+		ArrayList<String> myUrls = readUrlsFromFile();
+		for(String url : myUrls) {
+			ArrayList<String> content = contentOfUrl(url);
+			ArrayList<String> myWords = readWordsFromFile();
+			Map<String, Integer> wordFrequencyCountMap = new HashMap<String, Integer>();
+			for(String word : myWords) {
+				int count = getMyCount(word, content);
+				wordFrequencyCountMap.put(word, count);
+				if(myOutputForEachWord.containsKey(word)) {
+					myOutputForEachWord.put(word, myOutputForEachWord.get(word)+count);
 					//System.out.println("hello");
 				}
 				else {
-					my_output_for_each_word.put(word,count);
+					myOutputForEachWord.put(word, count);
 				}
 			}
-			word_frequency_countMap=sortByValue(word_frequency_countMap);
-			url_map.put(url, word_frequency_countMap);
+			wordFrequencyCountMap=sortByValue(wordFrequencyCountMap);
+			urlMap.put(url, wordFrequencyCountMap);
 		}
-	return url_map;		
+	return urlMap;		
 	}
 }
