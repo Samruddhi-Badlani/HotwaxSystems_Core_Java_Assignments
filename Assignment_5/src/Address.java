@@ -51,7 +51,7 @@ public class Address implements Serializable{
 	public void printAddress() {
 		
 		System.out.println("City    : "+city);
-		System.out.println("State   : "+city);
+		System.out.println("State   : "+state);
 		System.out.println("PinCode : "+pinCode);
 		System.out.println("Country : "+country);
 		

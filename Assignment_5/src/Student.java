@@ -1,16 +1,25 @@
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Student  implements Serializable{
 	
 	private String firstName ;
-	private String dateOfBirth;
+	private Date dateOfBirth;
 	private Address address;
 	
 	public Student(String firstName, String dateOfBirth, Address address) {
 		
 		// TODO Auto-generated constructor stub
 		this.firstName = firstName;
-		this.dateOfBirth = dateOfBirth;
+		try {
+			this.dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(dateOfBirth);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
 		this.address = address;
 	}
 	
@@ -18,7 +27,7 @@ public class Student  implements Serializable{
 		return firstName;
 	}
 	
-	public String getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 	
@@ -31,7 +40,13 @@ public class Student  implements Serializable{
 	}
 	
 	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+		
+		try {
+			this.dateOfBirth = new SimpleDateFormat("dd/MM/yyyy").parse(dateOfBirth);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
 	}
 	
 	public void setAddress(Address address) {
