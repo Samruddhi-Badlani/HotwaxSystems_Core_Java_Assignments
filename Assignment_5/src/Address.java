@@ -16,5 +16,47 @@ public class Address implements Serializable{
 		this.country = country;
 	}
 	
+	public String getCity() {
+		return city;
+	}
+	
+	public String getState() {
+		return state;
+	}
+	
+	public int getPinCode() {
+		return pinCode;
+	}
+	
+	public String getCountry() {
+		return country;
+	}
+	
+	public void setCity(String city) {
+		this.city = city;
+	}
+	
+	public void setState(String state) {
+		this.state = state;
+	}
+	
+	public void setPinCode(int pinCode) {
+		this.pinCode = pinCode;
+	}
+	
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	
+	public void printAddress() {
+		
+		System.out.println("City    : "+city);
+		System.out.println("State   : "+city);
+		System.out.println("PinCode : "+pinCode);
+		System.out.println("Country : "+country);
+		
+		
+	}
+	
 	
 }
